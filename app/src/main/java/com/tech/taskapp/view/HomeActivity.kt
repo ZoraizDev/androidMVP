@@ -10,25 +10,29 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.tech.taskapp.R
-
+import com.tech.taskapp.databinding.ActivityHomeBinding
 
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var newsViewModel: NewsViewModel
     private lateinit var newsAdapter: NewsAdapter
+    private lateinit var binding: ActivityHomeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+//        setContentView(R.layout.activity_home)
+        binding = ActivityHomeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val recyclerView: RecyclerView = findViewById(R.id.recyclerList)
-        if (recyclerView == null) {
-            Log.e("HomeActivity", "RecyclerView with ID recyclerList not found!")
-        }
-        recyclerView.layoutManager = LinearLayoutManager(this)
+//        val recyclerView: RecyclerView = findViewById(R.id.recyclerList)
+//        if (recyclerView == null) {
+//            Log.e("HomeActivity", "RecyclerView with ID recyclerList not found!")
+//        }
+        binding.recyclerList.layoutManager = LinearLayoutManager(this)
+//        recyclerView.layoutManager = LinearLayoutManager(this)
 
         newsAdapter = NewsAdapter()
-        recyclerView.adapter = newsAdapter
+        binding.recyclerList.adapter = newsAdapter
 
         // Initialize ViewModel
         newsViewModel = ViewModelProvider(this).get(NewsViewModel::class.java)
